@@ -25,8 +25,16 @@ class DetailViewController: UIViewController
         }
         
         title = selectedImage
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(shareTapped))
+        
 
         // Do any additional setup after loading the view.
+    }
+    
+    func shareTapped() {
+        let vc = UIActivityViewController(activityItems: [imageView.image!], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 
     override func didReceiveMemoryWarning()
